@@ -18,8 +18,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let addr = format!(
         "{}:{}",
-        env::var("BIND_ADDRESS")?.to_string(),
-        env::var("BIND_PORT")?.to_string()
+        env::var("BIND_ADDRESS")?,
+        env::var("BIND_PORT")?
     )
     .parse::<SocketAddr>()?;
 
