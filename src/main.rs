@@ -5,14 +5,23 @@ use std::{convert::Infallible, error::Error, net::SocketAddr};
 use server::routes;
 use std::env;
 use tracing::warn;
-use warp::{self, http::{Response, StatusCode}, Filter};
+use warp::{
+    self,
+    http::{Response, StatusCode},
+    Filter,
+};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     tracing_subscriber::fmt::init();
     dotenv::dotenv().ok();
 
-    let addr = format!("{}:{}", env::var("PORT")?, env::var("HOST")?).parse::<SocketAddr>()?;
+    let addr = format!(
+        "{}:{}",
+        env::var("BIND_ADDRESS")?.to_string(),
+        env::var("BIND_PORT")?.to_string()
+    )
+    .parse::<SocketAddr>()?;
 
     let index = warp::get().and_then(routes::index);
     let routes = warp::any().and(index).recover(handle_rejection);
