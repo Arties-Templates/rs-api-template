@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 WORKDIR /service
 
 # Update and Install tools and dependencies
