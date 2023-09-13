@@ -22,7 +22,7 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to Docker Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           rgistry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
