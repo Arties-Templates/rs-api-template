@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:trixie
 WORKDIR /service
 
 # Update and Install tools and dependencies
